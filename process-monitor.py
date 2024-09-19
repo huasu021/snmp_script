@@ -1,27 +1,27 @@
 """
 1.configuration in router:
-set system scripts snmp file process-monitor.py oid .1.3.6.1.4.1.2636.13.61.1.9.1.2.1
-set system scripts snmp file process-monitor.py oid .1.3.6.1.4.1.2636.13.61.1.9.1.3.1
-set system scripts snmp file process-monitor.py oid .1.3.6.1.4.1.2636.13.61.1.9.1.4.1
-set system scripts snmp file process-monitor.py oid .1.3.6.1.4.1.2636.13.61.1.9.1.5.1
+set system scripts snmp file process-monitor.py oid .1.3.6.1.4.1.2636.13.61.1.9.1.2
+set system scripts snmp file process-monitor.py oid .1.3.6.1.4.1.2636.13.61.1.9.1.3
+set system scripts snmp file process-monitor.py oid .1.3.6.1.4.1.2636.13.61.1.9.1.4
+set system scripts snmp file process-monitor.py oid .1.3.6.1.4.1.2636.13.61.1.9.1.5
 set system scripts snmp file process-monitor.py python-script-user JNPR-RW
 
 2.add annotate for each oid for easier reference
 edit system scripts snmp file process-monitor.py
-annotate oid .1.3.6.1.4.1.2636.13.61.1.9.1.2.1 "chassisd"   
-annotate oid .1.3.6.1.4.1.2636.13.61.1.9.1.3.1 "rpd"  
-annotate oid .1.3.6.1.4.1.2636.13.61.1.9.1.4.1 "ppmd"  
-annotate oid .1.3.6.1.4.1.2636.13.61.1.9.1.5.1 "bfdd"  
+annotate oid .1.3.6.1.4.1.2636.13.61.1.9.1.2 "chassisd"   
+annotate oid .1.3.6.1.4.1.2636.13.61.1.9.1.3 "rpd"  
+annotate oid .1.3.6.1.4.1.2636.13.61.1.9.1.4 "ppmd"  
+annotate oid .1.3.6.1.4.1.2636.13.61.1.9.1.5 "bfdd"  
 
 3. test from snmp server or local
-[huasu@pinkie ~]$ snmpget -v2c -t 2 -c 50LaRp0l lab-mx480-3d-02 .1.3.6.1.4.1.2636.13.61.1.9.1.4.1
+[huasu@pinkie ~]$ snmpget -v2c -t 2 -c 50LaRp0l lab-mx480-3d-02 .1.3.6.1.4.1.2636.13.61.1.9.1.4
 SNMPv2-SMI::enterprises.2636.13.61.1.9.1.4.1 = INTEGER: 22224
-[huasu@pinkie ~]$ snmpget -v2c -t 2 -c 50LaRp0l lab-mx480-3d-02 .1.3.6.1.4.1.2636.13.61.1.9.1.3.1
+[huasu@pinkie ~]$ snmpget -v2c -t 2 -c 50LaRp0l lab-mx480-3d-02 .1.3.6.1.4.1.2636.13.61.1.9.1.3
 SNMPv2-SMI::enterprises.2636.13.61.1.9.1.3.1 = INTEGER: 242284
-[huasu@pinkie ~]$ snmpget -v2c -t 2 -c 50LaRp0l lab-mx480-3d-02 .1.3.6.1.4.1.2636.13.61.1.9.1.2.1
+[huasu@pinkie ~]$ snmpget -v2c -t 2 -c 50LaRp0l lab-mx480-3d-02 .1.3.6.1.4.1.2636.13.61.1.9.1.2
 SNMPv2-SMI::enterprises.2636.13.61.1.9.1.2.1 = INTEGER: 69892
 
-huasu@lab-mx480-3d-02-re0> show snmp mib get .1.3.6.1.4.1.2636.13.61.1.9.1.4.1 
+huasu@lab-mx480-3d-02-re0> show snmp mib get .1.3.6.1.4.1.2636.13.61.1.9.1.4
 juniperMIB.13.61.1.9.1.4.1 = 22224
 
 4. User can add customised process command from cli 'show system processes wide detail' in below TARGET_COMMANDS_OIDS and configuration of juniper router accordingly.
@@ -31,10 +31,10 @@ import jcs
  
 # Define the list of exact command names to match and their corresponding SNMP OIDs
 TARGET_COMMANDS_OIDS = {
-    '/usr/sbin/chassisd -N': '.1.3.6.1.4.1.2636.13.61.1.9.1.2.1',
-    '/usr/libexec64/rpd -N': '.1.3.6.1.4.1.2636.13.61.1.9.1.3.1',
-    '/usr/sbin/ppmd -N': '.1.3.6.1.4.1.2636.13.61.1.9.1.4.1',
-    '/usr/sbin/bfdd -N': '.1.3.6.1.4.1.2636.13.61.1.9.1.5.1'
+    '/usr/sbin/chassisd -N': '.1.3.6.1.4.1.2636.13.61.1.9.1.2',
+    '/usr/libexec64/rpd -N': '.1.3.6.1.4.1.2636.13.61.1.9.1.3',
+    '/usr/sbin/ppmd -N': '.1.3.6.1.4.1.2636.13.61.1.9.1.4',
+    '/usr/sbin/bfdd -N': '.1.3.6.1.4.1.2636.13.61.1.9.1.5'
 }
  
 def get_rss_for_command(dev, command):
