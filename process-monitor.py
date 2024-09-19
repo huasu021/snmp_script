@@ -6,7 +6,7 @@ set system scripts snmp file process-monitor.py oid .1.3.6.1.4.1.2636.13.61.1.9.
 set system scripts snmp file process-monitor.py oid .1.3.6.1.4.1.2636.13.61.1.9.1.5
 set system scripts language python3
 set system scripts synchronize
-set system scripts snmp file process-monitor.py python-script-user JNPR-RW
+set system scripts snmp file process-monitor.py python-script-user JNPR-RO
 
 2.add annotate for each oid for easier reference
 edit system scripts snmp file process-monitor.py
